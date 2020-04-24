@@ -19,6 +19,8 @@ server.get('/', (req, res) => {
   res.send("It's alive!");
 });
 
+// the first practice at configuring token
+// see auth-router: function generateToken...
 server.get('/token', (req, res) => {
   
   const payload = {
@@ -27,8 +29,16 @@ server.get('/token', (req, res) => {
     favoriteFood: 'pizza'
   }
 
-  
+  const secret = 'wethotwasatoad';
 
-})
+  const options = {
+    expiresIn: '1h'
+  }
+
+  const token = jwt.sign(payload, secret, options);
+
+  res.json(token);
+});
+
 
 module.exports = server;

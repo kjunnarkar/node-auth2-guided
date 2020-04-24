@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const checkRole = require('../auth/check-role-middleware');
 const Users = require('./users-model.js');
 
 const restricted = require('../auth/restricted-middleware.js');
+const checkRole = require('../auth/check-role-middleware');
 
 router.get('/', restricted, checkRole('STUDENT'), (req, res) => {
   Users.find()
@@ -11,7 +11,5 @@ router.get('/', restricted, checkRole('STUDENT'), (req, res) => {
     })
     .catch(err => res.send(err));
 });
-
-
 
 module.exports = router;
