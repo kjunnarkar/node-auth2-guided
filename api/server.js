@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const authRouter = require('../auth/auth-router.js');
 const usersRouter = require('../users/users-router.js');
@@ -17,5 +18,17 @@ server.use('/api/users', usersRouter);
 server.get('/', (req, res) => {
   res.send("It's alive!");
 });
+
+server.get('/token', (req, res) => {
+  
+  const payload = {
+    subject: 'thisuser',
+    userid: "kiran",
+    favoriteFood: 'pizza'
+  }
+
+  
+
+})
 
 module.exports = server;
